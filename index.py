@@ -23,6 +23,4 @@ def create_qrcode(data=None ,size_qrcode=1, size_box=10, size_border=4):
     img.save("qrcode.png")
 
     # Mostrar a imagem (opcional)
-    img.show()
-
-create_qrcode()
+    # img.show()
