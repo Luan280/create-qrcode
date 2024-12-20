@@ -1,5 +1,5 @@
 import qrcode
-
+from PIL import Image
 
 def create_qrcode(fill_color="black", bg_color="white", data=None, size_qrcode=1, size_box=10, size_border=4):
     # Dados que serão codificados no QR Code
@@ -7,9 +7,9 @@ def create_qrcode(fill_color="black", bg_color="white", data=None, size_qrcode=1
 
     # Criar QR Code
     qr = qrcode.QRCode(
-        version=size_qrcode,  # Tamanho do QR Code (1 é o menor, 40 é o maior)
+        version= size_qrcode,  # Tamanho do QR Code (1 é o menor, 40 é o maior)
         error_correction=qrcode.constants.ERROR_CORRECT_M,  # Nível de correção de erro
-        box_size=size_box,  # Tamanho de cada "caixa" do QR Code
+        box_size= size_box,  # Tamanho de cada "caixa" do QR Code
         border=size_border  # Tamanho da borda (mínimo é 4)
     )
 
@@ -23,8 +23,12 @@ def create_qrcode(fill_color="black", bg_color="white", data=None, size_qrcode=1
     # Salvar a imagem
     img.save("qrcode.png")
 
-    # Mostrar a imagem (opcional)
-    # img.show()
+    # Abrir a imagem
+    imagem = Image.open("qrcode.png")
+
+    # Obter o tamanho (largura, altura)
+    largura, altura = imagem.size
+    return largura, altura
 
 
 # create_qrcode(data="youtube.com", size_qrcode=20, size_box=40,
