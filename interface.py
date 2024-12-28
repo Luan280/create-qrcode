@@ -1,6 +1,18 @@
 import qrcode
 import customtkinter as ctk
 from PIL import Image
+import os
+import shutil
+
+
+def download_qrcode():
+    arquivo_atual = os.getcwd()
+    # Caminho do arquivo atual
+    arquivo_atual += "/qrcode.png"
+    # Caminho do novo destino
+    novo_diretorio = "/home/luan-lima/Downloads"
+    # Mover o arquivo
+    shutil.move(arquivo_atual, novo_diretorio)
 
 
 def create_qrcode(fill_color="black", bg_color="white", data=None, size_qrcode=1, size_box=10, size_border=4):
@@ -123,7 +135,7 @@ test_button = ctk.CTkButton(
     frame_button, text="MOSTRAR QR CODE", command=show_data_qrcode, width=200, height=35)
 test_button.grid(row=0, column=0, padx=20, pady=20, sticky='w')
 
-download_button = ctk.CTkButton(frame_button, text="DOWNLOAD QRCODE", width=200, height=35)
+download_button = ctk.CTkButton(frame_button, text="DOWNLOAD QRCODE", command=lambda: download_qrcode(), width=200, height=35)
 download_button.grid(row=0, column=1, padx=20, pady=20, sticky='e')
 
 text_image = ctk.CTkLabel(frame_qrcode, text=msg_image)
